@@ -43,7 +43,7 @@ module.exports = {
     hot: true,
     proxy: [
       {
-        context: ['/api'],
+        context: ['/api/**'],
         target: 'http://localhost:3005/',
       },
     ],
