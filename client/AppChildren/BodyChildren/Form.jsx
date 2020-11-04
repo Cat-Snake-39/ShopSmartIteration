@@ -12,7 +12,7 @@ import Container from './Container.jsx';
 const query = (foodName, storeName) => {
   return axios.get('/api/', {
     params: {
-      store: storeName,
+      // store: storeName,
       food: foodName,
     },
   });
@@ -108,22 +108,20 @@ class Form extends Component {
     // into these arrays and then uses setState to overwrite the old
     // arrays.
 
-    query(this.state.food, 'tj').then((result) => {
-      newTraderJoesList.push(result.data);
+    query(this.state.food).then((result) => {
+      // TODO: instead of pushing the returned data back in,
+      //       iterate through the returned data (result.data)
+      //       result.data is supposed to be an array filled 
+      //       with rows that match the food string in state
+      //       ex: { store_name, product, price }
+      // // newTraderJoesList.push(result.data);
+      // // newRalphsList.push(result.data);
+      // // newTraderJoesList.push(result.data);
+      console.log(result, result.data);
       this.setState({
         foodsList: newFoodsList,
         traderJoesList: newTraderJoesList,
-      });
-    });
-    query(this.state.food, 'wf').then((result) => {
-      newWholeFoodsList.push(result.data);
-      this.setState({
         wholeFoodsList: newWholeFoodsList,
-      });
-    });
-    query(this.state.food, 'ralphs').then((result) => {
-      newRalphsList.push(result.data);
-      this.setState({
         ralphsList: newRalphsList,
       });
     });
