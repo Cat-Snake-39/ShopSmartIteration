@@ -11,7 +11,9 @@
   <h3 class="open">Sign In To Review Your Shopping Lists Or Continue As Guest</h3>
   <div class="intro">
     <button class="gotomiddle"><a class="atag" href="#middle">Continue as Guest</a></button>
-    <button class="gotomiddle">Sign in</button>
+    <form class="login__form" method="GET" action="/api/auth/oauth">
+      <button class="gotomiddle" type="submit">Github Login</button>
+    </form>
   </div>
  
 </head>
