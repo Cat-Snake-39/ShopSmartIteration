@@ -1,12 +1,13 @@
+require("dotenv").config();
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const axios = require('axios');
 const apiRouter = require('./routes/api.js');
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
