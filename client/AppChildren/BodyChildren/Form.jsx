@@ -111,7 +111,7 @@ class Form extends Component {
         'Trader Joes': 0,
         'Ralphs': 0,
       };
-
+      console.log("HIT");
       // iterate through result.data 
       // (should be an array of objects.
       //  all with a store and price property),
