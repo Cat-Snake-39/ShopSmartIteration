@@ -9,9 +9,9 @@ const Login = (props) => {
       </h1>
       <h3 className="open">Sign In To Review Your Shopping Lists Or Continue As Guest</h3>
       <div className="intro">
-        <button className="gotomiddle"><a class="atag" href="#middle" onClick={() => props.setIsLoggedIn(true)}>Continue as Guest</a></button>
+        <button className="gotomiddle"><a className="atag" href="#middle" onClick={() => props.setIsLoggedIn(true)}>Continue as Guest</a></button>
         <form className="login__form" method="GET" action="/api/auth/oauth">
-          <button className="gotomiddle" type="submit" onClick={() => props.setIsLoggedIn(true)}>Github Login</button>
+          <button className="gotomiddle" type="submit">Github Login</button>
         </form>
       </div>
     </>
