@@ -11,6 +11,8 @@ import Container from './Container.jsx';
 
 const query = (foodName, storeName) => {
   return axios.get('/api/', {
+    // ! removed store because we won't be querying any 
+    // ! store specific tables
     params: {
       // store: storeName,
       food: foodName,
@@ -96,34 +98,38 @@ class Form extends Component {
     e.preventDefault();
     // We're setting up a new array to update the food list in state, using
     // this.state.food, which is the user's input into the food item input.
-    const newFoodsList = [...this.state.foodsList, this.state.food];
-
-    // Here we're spreading in the current arrays for each store in state
-    // PLEASE NOTE that these contain prices.
-    const newWholeFoodsList = [...this.state.wholeFoodsList];
-    const newRalphsList = [...this.state.ralphsList];
-    const newTraderJoesList = [...this.state.traderJoesList];
 
     // Each query pulls the price of the item from the database and pushes it
     // into these arrays and then uses setState to overwrite the old
     // arrays.
 
     query(this.state.food).then((result) => {
-      // TODO: instead of pushing the returned data back in,
-      //       iterate through the returned data (result.data)
-      //       result.data is supposed to be an array filled 
-      //       with rows that match the food string in state
-      //       ex: { store_name, product, price }
-      // // newTraderJoesList.push(result.data);
-      // // newRalphsList.push(result.data);
-      // // newTraderJoesList.push(result.data);
-      console.log(result, result.data);
-      this.setState({
-        foodsList: newFoodsList,
-        traderJoesList: newTraderJoesList,
-        wholeFoodsList: newWholeFoodsList,
-        ralphsList: newRalphsList,
-      });
+      // instantiate a list of all the stores,
+      // default price for food item at zero
+      const prices = {
+        'Whole Foods': 0,
+        'Trader Joes': 0,
+        'Ralphs': 0,
+      };
+
+      // iterate through result.data 
+      // (should be an array of objects.
+      //  all with a store and price property),
+      // if the current object, store matches any
+      // of the stores in prices.obj, update the price
+      for (let obj of result.data) {
+        if (obj.store === 'Whole Foods') prices['Whole Foods'] = obj.price;
+        if (obj.store === 'Trader Joes') prices['Trader Joes'] = obj.price;
+        if (obj.store === 'Ralphs') prices['Ralphs'] = obj.price;
+      }
+      // update state to reflect those new prices
+      this.setState(prevState => ({
+        ...prevState,
+        foodsList: [...prevState.foodsList, prevState.food],
+        traderJoesList: [...prevState.traderJoesList, prices['Whole Foods'].toFixed(2)],
+        wholeFoodsList: [...prevState.wholeFoodsList, prices['Trader Joes'].toFixed(2)],
+        ralphsList: [...prevState.ralphsList, prices['Ralphs'].toFixed(2)],
+      }));
     });
   }
 

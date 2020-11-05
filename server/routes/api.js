@@ -32,10 +32,10 @@ router.get("/auth/verify", authController.verifyLogin, (req, res) => {
   res.status(200).json(res.locals);
 });
 
-router.use("/", shopControllers.getPrice, async (req, res) => {
+router.get("/", shopControllers.getPrice, async (req, res) => {
   try {
-    console.log("trying", res.locals.price);
-    res.json(res.locals.price);
+    console.log("trying", res.locals.prices);
+    res.json(res.locals.prices);
   } catch (err) {
     // check if we need to send as json?
     console.log("error", err);
