@@ -20,7 +20,7 @@ authController.token = async (req, res, next) => {
     )
     .then((githubRes) => {
       res.locals.user = { token: githubRes.data.access_token };
-      console.log(res.locals.user)
+      // console.log(res.locals.user)
       return next();
     })
     .catch((err) =>
