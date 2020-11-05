@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import Overall from './FooterChildren/Overall.jsx';
+import Overall from '../components/Overall.jsx';
 
 class Footer extends Component {
   constructor(props) {

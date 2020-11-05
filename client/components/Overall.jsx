@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
 
 function Overall(props) {
   // These are all the props we need. I know, prop drilling is bad for the environment.

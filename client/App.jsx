@@ -1,13 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
-import { render } from "react-dom";
 import axios from "axios";
-import Header from "./AppChildren/Header.jsx";
-import Login from "./Login.jsx";
-// import child components
-// import Body from './AppChildren/Body.jsx'
-// import Footer from './AppChildren/BodyChildren/Footer.jsx'
-import styles from "../styles.css";
-import Form from "./AppChildren/BodyChildren/Form.jsx";
+import Header from "./containers/Header";
+import Login from "./components/Login";
+
+import Main from "./containers/Main";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +12,7 @@ function App() {
   // // When component mounts, hit '/api/auth/verify'
   // // check if they are logged in
   useEffect(() => {
-    axios.get("/api/auth/verify").then(({data}) => {
+    axios.get("/api/auth/verify").then(({ data }) => {
       // if they're loggedIn, set our logged in state to true
       if (data.isLoggedIn) setIsLoggedIn(true);
       setIsLoading(false);
@@ -28,12 +24,10 @@ function App() {
   }
 
   return (
-    <div>
       <>
         <Header />
-        <Form />
+        <Main />
       </>
-    </div>
   );
 }
 export default App;
