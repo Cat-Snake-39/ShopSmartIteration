@@ -10,7 +10,7 @@ function SubContainer(props) {
   const { priceList } = props.props;
 
   // This reducer function calculates the subtotals
-  const storeSubtotal = priceList.reduce((a, b) => a + b, 0);
+  const storeSubtotal = priceList.reduce((a, b) => (Number(a) + Number(b)).toFixed(2), 0);
 
   // This puts each of the items in the food and price array into an array to be rendered.
   const foodRows = [];
