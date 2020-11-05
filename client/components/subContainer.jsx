@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-import { render } from 'react-dom';
+import React from 'react';
 
 function SubContainer(props) {
   // Here wer'e destructuring the props we need. Don't ask me to explain why each prop level is different.

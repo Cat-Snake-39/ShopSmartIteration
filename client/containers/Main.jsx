@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import axios from 'axios';
-import logo from './wholeFoods.png';
-import logos from './traders.png';
-import logoss from './ralphs.png';
-import Footer from './Footer.jsx';
-import Container from './Container.jsx';
+import logo from '../images/wholeFoods.png';
+import logos from '../images/traders.png';
+import logoss from '../images/ralphs.png';
+import Footer from './Footer';
+import Container from '../components/Container';
 
 /* Query request to retrieve prices based on inputted food */
 

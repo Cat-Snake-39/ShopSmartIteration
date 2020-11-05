@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import SubContainer from './subContainer.jsx';
+import SubContainer from './subContainer';
 
 class Container extends Component {
   constructor(props) {
