@@ -3,11 +3,13 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const apiRouter = require('./routes/api.js');
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
