@@ -28,7 +28,7 @@ module.exports = {
       {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpg)$/,
@@ -47,6 +47,11 @@ module.exports = {
         target: 'http://localhost:3005/',
       },
     ],
+  },
+  resolve: {
+    extensions: [
+      ".js", ".jsx", ".scss"
+    ]
   },
   // plugins: [
   //   new HtmlWebPackPlugin({

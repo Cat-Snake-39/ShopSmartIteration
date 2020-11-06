@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import axios from 'axios';
-import logo from './wholeFoods.png';
-import logos from './traders.png';
-import logoss from './ralphs.png';
-import Footer from './Footer.jsx';
-import Container from './Container.jsx';
+import logo from '../images/wholeFoods.png';
+import logos from '../images/traders.png';
+import logoss from '../images/ralphs.png';
+import Footer from './Footer';
+import Container from '../components/Container';
 
 /* Query request to retrieve prices based on inputted food */
 
@@ -26,9 +25,9 @@ class Form extends Component {
     this.state = {
       // These switch from true/false based on which stores have been selected to
       // display
-      wholeFoodsSelected: false,
-      traderJoesSelected: false,
-      ralphsSelected: false,
+      wholeFoodsSelected: true,
+      traderJoesSelected: true,
+      ralphsSelected: true,
       // This contains a list of all food items that the user has inputted, which
       // is needed to render
       foodsList: [],
@@ -51,8 +50,10 @@ class Form extends Component {
     this.onFoodInput = this.onFoodInput.bind(this);
     this.onBudgetInput = this.onBudgetInput.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.deleteRow = this.deleteRow.bind(this);
   }
 
+  
   // tracks user click of store to display store "card"
   storeClick(store) {
     if (!this.state[store]) {
@@ -131,6 +132,26 @@ class Form extends Component {
         ralphsList: [...prevState.ralphsList, prices['Ralphs'].toFixed(2)],
       }));
     });
+
+  }
+
+  deleteRow(e) {
+    console.log('e.target: ', e.target.parentNode.id);
+    let curr = [...this.state.foodsList];
+    let currFoodRalphs = [...this.state.ralphsList];
+    let currTraderJoes = [...this.state.traderJoesList];
+    let currWholeFoods = [...this.state.wholeFoodsList];
+    currFoodRalphs.splice(e.target.parentNode.id, 1);
+    currTraderJoes.splice(e.target.parentNode.id, 1);
+    currWholeFoods.splice(e.target.parentNode.id, 1);
+    curr.splice(e.target.parentNode.id, 1);
+    this.setState(prevState => ({
+      ...prevState,
+      foodsList: curr,
+      ralphsList: currFoodRalphs,
+      traderJoesList: currTraderJoes,
+      wholeFoodsList: currWholeFoods,
+    }))
   }
 
   render() {
@@ -182,7 +203,7 @@ class Form extends Component {
             />
           </div>
         </div>
-        <Container props={this.state} />
+        <Container props={this.state} deleteRow={this.deleteRow} />
         <Footer props={this.state} />
       </div>
     );

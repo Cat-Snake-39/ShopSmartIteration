@@ -44,8 +44,10 @@ authController.login = async (req, res, next) => {
 };
 
 authController.verifyLogin = async (req, res, next) => {
+  console.log(req.cookies.jwt_token)
   try {
     jwt.verify(req.cookies.jwt_token, process.env.JWT_SECRET, (err, data) => {
+      console.log(">>>>>>>>>")
       if (err) return res.status(200).json({ isLoggedIn: false });
       res.locals = { isLoggedIn: true };
       console.log(res.locals.isLoggedIn);

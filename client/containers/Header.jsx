@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 function Header() {
   return (
     <div>
-      <div id="middle" className="header">
+      <div className="header">
         <h2 className="title">SHOP SMARTER</h2>
       </div>
       <div className="header">

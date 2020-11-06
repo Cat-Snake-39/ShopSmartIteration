@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import SubContainer from './subContainer.jsx';
+import SubContainer from './subContainer';
 
 class Container extends Component {
   constructor(props) {
@@ -22,6 +21,7 @@ class Container extends Component {
             priceList: this.props.props.wholeFoodsList,
             maxBudget: this.props.props.maxBudget,
           }}
+          deleteRow={this.props.deleteRow}
           key="wholeFoodsList"
         />
       );
@@ -36,6 +36,7 @@ class Container extends Component {
             priceList: this.props.props.traderJoesList,
             maxBudget: this.props.props.maxBudget,
           }}
+          deleteRow={this.props.deleteRow}
           key="traderJoesList"
         />
       );
@@ -50,6 +51,7 @@ class Container extends Component {
             priceList: this.props.props.ralphsList,
             maxBudget: this.props.props.maxBudget,
           }}
+          deleteRow={this.props.deleteRow}
           key="ralphsList"
         />
       );

@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-import { render } from 'react-dom';
+import React from 'react';
 
 function SubContainer(props) {
   // Here wer'e destructuring the props we need. Don't ask me to explain why each prop level is different.
@@ -8,6 +6,7 @@ function SubContainer(props) {
   const { maxBudget } = props.props.props;
   const { foodsList } = props.props.props;
   const { priceList } = props.props;
+  const deleteRow = props.deleteRow;
 
   // This reducer function calculates the subtotals
   const storeSubtotal = priceList.reduce((a, b) => (Number(a) + Number(b)).toFixed(2), 0);
@@ -16,7 +15,7 @@ function SubContainer(props) {
   const foodRows = [];
   foodsList.forEach((food, index) => {
     foodRows.push(
-      <tr className="row" key={index}>
+      <tr className="row" key={index} onClick={(e) => {deleteRow(e)}} id={index}>
         <td className="row" id="foodBox">
           {food}
         </td>
