@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Overall from '../components/Overall.jsx';
 
-class Footer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
+function Footer({props})  {
+ 
     return (
       <div className="footing">
-        <Overall props={this.props.props}/>
+        <Overall props={props}/>
       </div>
     );
-  }
 }
 export default Footer;

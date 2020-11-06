@@ -23,10 +23,10 @@ function Overall(props) {
   // find best average price
   const averages = {};
   for (const key in checkedPriceList) {
-    averages[key] = checkedPriceList[key].reduce((a, b) => a + b, 0);
+    averages[key] = checkedPriceList[key].reduce((a, b) => (Number(a) + Number(b)).toFixed(2), 0);
   }
-  const bestAveragePrice = Math.min(...Object.values(averages));
-  const bestStore = Object.keys(averages).find((key) => averages[key] === bestAveragePrice);
+  const bestPrice = Math.min(...Object.values(averages));
+  const bestStore = Object.keys(averages).find((key) => Number(averages[key]) === bestPrice);
 
   // Toggle between showing and not showing the the best price.
 
@@ -50,7 +50,7 @@ function Overall(props) {
         <h1>
           {bestStore}
 {' '}
-has the best average price of ${bestAveragePrice}
+has the best price of ${bestPrice}
         </h1>
       </div>
     </div>
